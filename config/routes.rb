@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   root "metrics#index"
 
   resources :metrics do
-    post :cancel, on: :collection
-    resources :metric_values, only: [:new, :create]
+    get :cancel, on: :collection
+
+    resources :metric_values, only: [:new, :create] do
+      get :cancel, on: :collection
+    end
   end
 end
