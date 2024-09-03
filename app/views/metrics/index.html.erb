@@ -8,12 +8,29 @@
     </div>
     <div id="add-metric">
     </div>
-    <div id="metrics-list" class="container pt-5 bg-light">
-      <% @metrics.each do |metric| %>
-        <ul>
-          <%= metric.name %>
-        </ul>
-      <% end %>
+    <div id="metrics-list-container" class="container pt-5 bg-light">
+      <ul>
+        <% @metrics.each do |metric| %>
+            <li>
+              <%= metric.name %>
+              <div class="col text-end">
+              <%= link_to 'Add Value', new_metric_metric_value_path(metric), class: 'btn btn-primary', data: { turbo_stream: true } %>
+              </div>
+              <div id="add-metric-value">
+              </div>
+              <div id="metric-<%= metric.id %>-values">
+                <ul>
+                  <% metric.metric_values.each do |metric_value| %>
+                    <li>
+                      <%= metric_value.value %>
+                      <%= metric_value.created_at %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

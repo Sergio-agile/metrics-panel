@@ -1,0 +1,10 @@
+<div id="add-metric-value">
+  <div class="container pt-3 bg-light">
+    <%= simple_form_for [@metric, @metric_value], url: metric_metric_values_path(@metric) do |f| %>
+      <%= f.hidden_field :metric_id %>
+      <%= f.input :value %>
+      <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', cancel_metric_metric_values_path(@metric), class: 'btn btn-secondary', data: { turbo_stream: true } %>
+    <% end %>
+  </div>
+</div>

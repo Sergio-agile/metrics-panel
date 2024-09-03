@@ -7,7 +7,6 @@ class MetricsController < ApplicationController
   def new
     @metric = Metric.new
 
-    # turbo_stream.replace('add-metric', template: 'metrics/new')
     respond_to(&:turbo_stream)
   end
 
@@ -19,6 +18,10 @@ class MetricsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def cancel
+    respond_to(&:turbo_stream)
   end
 
   private
