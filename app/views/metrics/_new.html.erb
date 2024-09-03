@@ -1,0 +1,10 @@
+<div id="add-metric">
+  <div class="container pt-3 bg-light">
+    <%= simple_form_for @metric do |f| %>
+      <%= f.input :name %>
+      <%= f.input :data_type, collection: Metric.data_types.keys, include_blank: false %>
+      <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', cancel_metrics_path, class: 'btn btn-secondary', data: { turbo_stream: true } %>
+    <% end %>
+  </div>
+</div>

@@ -8,4 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "metrics#index"
+
+  resources :metrics do
+    post :cancel, on: :collection
+    resources :metric_values, only: [:new, :create]
+  end
 end
