@@ -1,25 +1,28 @@
 <div class="card mt-3">
   <div class="card-header d-flex justify-content-between">
     <div>
-      <%= metric.name %>
+      <h5 class="card-title pt-1"><%= metric.name %></h5>
     </div>
     <div>
-      <%= link_to 'Add Value', new_metric_metric_value_path(metric), class: 'btn btn-primary', data: { turbo_stream: true } %>
+      <%= link_to 'Add Value', new_metric_metric_value_path(metric), class: 'btn btn-outline-danger px-4 rounded-pill', data: { turbo_stream: true } %>
     </div>
 
   </div>
   <div class="card-body">
     <div id="add-metric-value-<%= metric.id %>">
     </div>
-    <div id="metric-<%= metric.id %>-values">
-      <ul>
-        <% metric.metric_values.each do |metric_value| %>
-          <li>
-            <%= metric_value.value %>
-            <%= metric_value.created_at %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="container" id="metric-<%= metric.id %>-values">
+      <div class="row">
+        <div class="col-8">
+          <div class="chart-container">
+            <canvas data-controller="chart"
+              data-chart-metric-id-value="1"
+              data-chart-metric-values-value='<%= metric.metric_values.pluck(:value) %>'
+              data-chart-metric-labels-value='<%= metric.metric_values.pluck(:created_at).map { |date| format_timestamp(date) } %>'>
+            </canvas>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
