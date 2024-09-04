@@ -19,7 +19,7 @@ class MetricValuesController < ApplicationController
     @metric_value.metric = @metric
 
     if @metric_value.save
-      redirect_to metrics_path # turbo_stream to append metric to the list
+      respond_to(&:turbo_stream)
     else
       render :new, status: :unprocessable_entity
     end
