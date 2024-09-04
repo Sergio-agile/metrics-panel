@@ -1,1 +1,2 @@
-<%= turbo_stream.replace('add-metric-value', partial: 'metric_values/new') %>
+<%= turbo_stream.replace("add-metric-value-#{@metric.id}", partial: 'metric_values/new') %>
+

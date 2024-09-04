@@ -8,6 +8,8 @@ class MetricValuesController < ApplicationController
   end
 
   def cancel
+    @metric = Metric.find(params[:metric_id])
+
     respond_to(&:turbo_stream)
   end
 

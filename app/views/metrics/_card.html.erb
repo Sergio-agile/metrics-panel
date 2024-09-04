@@ -1,0 +1,29 @@
+<div class="card mt-3">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <%= metric.name %>
+    </div>
+    <div>
+      <%= link_to 'Add Value', new_metric_metric_value_path(metric), class: 'btn btn-primary', data: { turbo_stream: true } %>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <div id="add-metric-value-<%= metric.id %>">
+    </div>
+    <div id="metric-<%= metric.id %>-values">
+      <ul>
+        <% metric.metric_values.each do |metric_value| %>
+          <li>
+            <%= metric_value.value %>
+            <%= metric_value.created_at %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
