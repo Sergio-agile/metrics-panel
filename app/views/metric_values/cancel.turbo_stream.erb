@@ -1,2 +1,3 @@
-<%= turbo_stream.replace('add-metric-value', html: raw('<div id="add-metric-value">
-</div>')) %>
+<%= turbo_stream.replace("add-metric-value-#{@metric.id}", html: raw("<div id='add-metric-value-#{@metric.id}'>
+</div>")) %>
+

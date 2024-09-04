@@ -1,4 +1,4 @@
-<div id="add-metric-value">
+<div id="add-metric-value-<%= @metric.id %>">
   <div class="container pt-3 bg-light">
     <%= simple_form_for [@metric, @metric_value], url: metric_metric_values_path(@metric) do |f| %>
       <%= f.hidden_field :metric_id %>
