@@ -11,9 +11,10 @@
   <div class="card-body">
     <div id="add-metric-value-<%= metric.id %>">
     </div>
-    <div class="container" id="metric-<%= metric.id %>-values">
+    <% if metric.metric_values.any? %>
+      <div class="container" id="metric-<%= metric.id %>-values">
       <div class="row">
-        <div class="col-8">
+        <div class="col-10">
           <div class="chart-container">
             <canvas data-controller="chart"
               data-chart-metric-id-value="1"
@@ -22,10 +23,41 @@
             </canvas>
           </div>
         </div>
+        <div class="col-12">
+          <div id="metric-averages" class="d-flex flex-wrap align-items-center gap-3 mt-3">
+            <div class="card text-center" style="width: 10rem;">
+              <div class="card-body">
+                <h6 class="card-title">Avg/Minute</h6>
+                <p class="display-6"><%= metric.average_per_minute.round(1) %></p>
+              </div>
+            </div>
+
+            <div class="card text-center" style="width: 10rem;">
+              <div class="card-body">
+                <h6 class="card-title">Avg/Hour</h6>
+                <p class="display-6"><%= metric.average_per_hour.round(1) %></p>
+              </div>
+            </div>
+
+            <div class="card text-center" style="width: 10rem;">
+              <div class="card-body">
+                <h6 class="card-title">Avg/Day</h6>
+                <p class="display-6"><%= metric.average_per_day.round(1) %></p>
+              </div>
+            </div>
+        </div>
+        </div>
       </div>
-    </div>
+      </div>
+    <% else %>
+      <h6 class="text-center">No values for this metric yet. Go ahead and add some values</h6>
+    <% end %>
   </div>
 </div>
+
+
+
+
 
 
 

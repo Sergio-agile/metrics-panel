@@ -9,7 +9,7 @@
     <div id="add-metric">
     </div>
     <div id="metrics-list-container" class="container pt-5 bg-light">
-      <ul class="list-unstyled">
+      <ul id="metric-list" class="list-unstyled">
         <% @metrics.each do |metric| %>
           <li>
             <%= render 'card', metric: metric %>
