@@ -1,7 +1,7 @@
 class MetricsController < ApplicationController
 
   def index
-    @metrics = Metric.all
+    @metrics = Metric.all.order(created_at: :asc).includes(:metric_values)
   end
 
   def new
@@ -27,7 +27,7 @@ class MetricsController < ApplicationController
   private
 
   def metric_params
-    params.require(:metric).permit(:name, :data_type)
+    params.require(:metric).permit(:name)
   end
 
 

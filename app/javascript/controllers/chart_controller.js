@@ -23,7 +23,7 @@ export default class extends Controller {
         datasets: [{
           label: `Metric ${this.metricIdValue}`,
           data: this.metricValuesValue,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          backgroundColor: 'rgba(253, 16, 21, 0.2)',
           borderColor: 'rgba(253, 16, 21, 1)',
           borderWidth: 1,
           fill: false

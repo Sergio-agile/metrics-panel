@@ -1,0 +1,3 @@
+<%= turbo_stream.append("metric-list", partial: 'metrics/card', locals: { metric: @metric }) %>
+<%= turbo_stream.replace('add-metric', html: raw('<div id="add-metric">
+</div>')) %>
