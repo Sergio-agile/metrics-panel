@@ -1,21 +1,22 @@
-<div class="container pt-5 bg-light">
-  <div class="row bg-light" >
+<div class="container pt-5">
+  <div class="row" >
     <div class="col">
-      <h1 class="page-header ">Metrics</h1>
+      <h1 class="page-header ms-3">Metrics</h1>
     </div>
-    <div class="col text-end">
+    <div class="col text-end me-3">
       <%= link_to 'Add Metric', new_metric_path, class: 'btn btn-outline-danger px-4 rounded-pill', data: { turbo_stream: true } %>
     </div>
     <div id="add-metric">
     </div>
-    <div id="metrics-list-container" class="container pt-5 bg-light">
-      <ul id="metric-list" class="list-unstyled">
+    <div class="container d-flex justify-content-center">
+      <div id="metrics-list-container" class="container pt-5 col-8">
         <% @metrics.each do |metric| %>
-          <li>
-            <%= render 'card', metric: metric %>
-          </li>
+          <%= render 'card', metric: metric %>
         <% end %>
-      </ul>
+      </div>
+      <div id="metrics-nav mt-5">
+        <%= render 'side_nav', metrics: @metrics %>
+      </div>
     </div>
   </div>
 </div>

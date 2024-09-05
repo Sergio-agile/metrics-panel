@@ -16,3 +16,7 @@
 @import "bootstrap";
 @import "colors";
 @import "chart";
+
+html {
+  scroll-behavior: smooth;
+}

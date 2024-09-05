@@ -1,0 +1,12 @@
+<div class="mt-5">
+  <h4>Metrics list</h4>
+
+  <ul class="list-group">
+    <% metrics.all.each do |metric| %>
+      <li class="list-group-item">
+        <%= link_to metric.name, "#card-metric-#{metric.id}" %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
