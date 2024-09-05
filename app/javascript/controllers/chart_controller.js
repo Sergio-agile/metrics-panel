@@ -5,7 +5,7 @@ Chart.register(...registerables);
 export default class extends Controller {
 
   static values = {
-    metricId: Number,
+    metricName: String,
     metricValues: Array,
     metricLabels: Array
   }
@@ -21,7 +21,7 @@ export default class extends Controller {
       data: {
         labels: this.metricLabelsValue,
         datasets: [{
-          label: `Metric ${this.metricIdValue}`,
+          label: `${this.metricNameValue}`,
           data: this.metricValuesValue,
           backgroundColor: 'rgba(253, 16, 21, 0.2)',
           borderColor: 'rgba(253, 16, 21, 1)',

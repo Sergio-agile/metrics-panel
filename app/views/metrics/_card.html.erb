@@ -13,18 +13,22 @@
     </div>
     <% if metric.metric_values.any? %>
       <div class="container" id="metric-<%= metric.id %>-values">
-      <div class="row">
         <div class="col-10">
-          <div class="chart-container">
+          <div class="chart-container ms-5">
+            <% last_24_hours = (0..23).map { |i| (Time.now - i.hours).beginning_of_hour }.reverse %>
+            <% hourly_values = last_24_hours.map do |hour|
+              value = metric.metric_values.where(created_at: hour..hour.end_of_hour).sum(:value)
+              [hour, value]
+            end %>
             <canvas data-controller="chart"
-              data-chart-metric-id-value="1"
-              data-chart-metric-values-value='<%= metric.metric_values.pluck(:value) %>'
-              data-chart-metric-labels-value='<%= metric.metric_values.pluck(:created_at).map { |date| format_timestamp(date) } %>'>
+              data-chart-metric-name-value="<%= metric.name %>"
+              data-chart-metric-values-value='<%= hourly_values.map(&:last) %>'
+              data-chart-metric-labels-value='<%= hourly_values.map { |hour, _| format_timestamp(hour) } %>'>
             </canvas>
           </div>
         </div>
-        <div>
-          <div id="metric-averages" class="d-flex flex-wrap align-items-center gap-3 mt-3">
+        <div class="col-10">
+          <div id="metric-averages" class="d-flex flex-wrap justify-content-around gap-3 mt-3 ms-5">
             <div class="card text-center" style="width: 10rem;">
               <div class="card-body">
                 <h6 class="card-title">Avg/Minute</h6>
@@ -45,9 +49,8 @@
                 <p class="display-6"><%= metric.average_per_day.round(1) %></p>
               </div>
             </div>
+          </div>
         </div>
-        </div>
-      </div>
       </div>
     <% else %>
       <h6 class="text-center">No values for this metric yet. Go ahead and add some values</h6>

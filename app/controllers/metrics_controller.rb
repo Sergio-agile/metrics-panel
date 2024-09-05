@@ -1,7 +1,7 @@
 class MetricsController < ApplicationController
 
   def index
-    @metrics = Metric.all.order(created_at: :asc).includes(:metric_values)
+    @metrics = Metric.all.order(created_at: :desc).includes(:metric_values)
   end
 
   def new
