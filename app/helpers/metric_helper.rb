@@ -1,6 +1,6 @@
 module MetricHelper
 
   def format_timestamp(timestamp)
-    timestamp.strftime("%Y-%m-%d") if timestamp.present?
+    timestamp.strftime("%I:%M %p") if timestamp.present?
   end
 end
