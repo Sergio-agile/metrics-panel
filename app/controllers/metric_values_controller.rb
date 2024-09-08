@@ -19,6 +19,7 @@ class MetricValuesController < ApplicationController
     @metric_value.metric = @metric
 
     if @metric_value.save
+      @metric.touch
       respond_to(&:turbo_stream)
     else
       render :new, status: :unprocessable_entity

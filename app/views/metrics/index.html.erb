@@ -10,13 +10,20 @@
     </div>
     <div class="container d-flex justify-content-center">
       <div id="metrics-list-container" class="container pt-5 col-8">
-        <% @metrics.each do |metric| %>
-          <%= render 'card', metric: metric %>
+        <% if @metrics.present? %>
+          <% @metrics.each do |metric| %>
+            <%= render 'card', metric: metric %>
+          <% end %>
+        <% else %>
+          <h6 class="text-center">No metrics yet. Go ahead and add the first metric. Also you can seed the database with a sample metric, executing rails db:migrate</h6>
         <% end %>
+
       </div>
-      <div id="metrics-nav mt-5">
-        <%= render 'side_nav', metrics: @metrics %>
-      </div>
+      <% if @metrics.present? %>
+        <div id="metrics-nav mt-5">
+          <%= render 'side_nav', metrics: @metrics %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
