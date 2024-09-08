@@ -18,8 +18,6 @@ class Metric < ApplicationRecord
   private
 
   def calculate_average(period)
-    # values = metric_values.group_by_period(period, :created_at).average(:value)
-    # values.values.sum / values.keys.size if values.present?
     values = metric_values.group_by_period(period, :created_at).average(:value)
     valid_values = values.values.compact
     valid_values.sum / valid_values.size if valid_values.present?
