@@ -1,7 +1,11 @@
 class MetricsController < ApplicationController
+  include Cacheable
 
   def index
     @metrics = Metric.all.order(created_at: :desc).includes(:metric_values)
+
+    etag = set_etag(@metrics)
+    fresh_when etag: etag
   end
 
   def new
@@ -29,6 +33,5 @@ class MetricsController < ApplicationController
   def metric_params
     params.require(:metric).permit(:name)
   end
-
 
 end
